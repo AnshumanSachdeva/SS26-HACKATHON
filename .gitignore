@@ -1,0 +1,12 @@
+venv/
+.venv/
+__pycache__/
+*.pyc
+
+.env
+
+backend/app/uploads/*
+
+.vscode/
+
+.DS_Store
