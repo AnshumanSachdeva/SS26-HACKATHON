@@ -3,311 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blueprint Cop - Analysis Result</title>
 
-    <style>
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
-            font-family:Segoe UI, Arial, Helvetica, sans-serif;
-        }
+    <title>Blueprint Cop | Analysis Report</title>
 
-        body{
-            background:#f5f8ff;
-            padding:40px 20px;
-        }
-
-        .container{
-            width:100%;
-            max-width:850px;
-            margin:0 auto;
-        }
-
-        h1{
-            text-align:center;
-            color:#1f2937;
-            margin-bottom:30px;
-        }
-
-        .card{
-            background:#fff;
-            border-radius:16px;
-            padding:24px;
-            margin-bottom:20px;
-            box-shadow:0 10px 30px rgba(0,0,0,.06);
-        }
-
-        .card h2{
-            font-size:16px;
-            color:#2563eb;
-            margin-bottom:16px;
-            text-transform:uppercase;
-            letter-spacing:.5px;
-        }
-
-        .stat-grid{
-            display:grid;
-            grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
-            gap:16px;
-        }
-
-        .stat{
-            background:#eef5ff;
-            border-radius:12px;
-            padding:16px;
-            text-align:center;
-        }
-
-        .stat .label{
-            font-size:12px;
-            color:#6b7280;
-            text-transform:uppercase;
-            margin-bottom:6px;
-        }
-
-        .stat .value{
-            font-size:22px;
-            font-weight:700;
-            color:#111827;
-        }
-
-        .pill{
-            display:inline-block;
-            padding:6px 14px;
-            border-radius:30px;
-            font-weight:700;
-            font-size:14px;
-        }
-
-        .pill.passed, .pill.approved, .pill.low{ background:#dcfce7; color:#16a34a; }
-        .pill.failed, .pill.not-approved, .pill.critical{ background:#fee2e2; color:#dc2626; }
-        .pill.conditionally-approved, .pill.moderate, .pill.high{ background:#fef3c7; color:#d97706; }
-
-        .violation{
-            border-left:5px solid #d1d5db;
-            background:#f9fafb;
-            border-radius:10px;
-            padding:16px;
-            margin-bottom:14px;
-        }
-
-        .violation.severity-high{ border-color:#dc2626; }
-        .violation.severity-medium{ border-color:#d97706; }
-        .violation.severity-low{ border-color:#2563eb; }
-
-        .violation .room{
-            font-weight:700;
-            margin-bottom:6px;
-        }
-
-        .violation .row{
-            font-size:14px;
-            color:#374151;
-            margin-top:4px;
-        }
-
-        ul.plain{
-            list-style:none;
-            padding:0;
-        }
-
-        ul.plain li{
-            padding:10px 14px;
-            background:#f9fafb;
-            border-radius:8px;
-            margin-bottom:8px;
-            font-size:14px;
-        }
-
-        ul.plain.positive li{ border-left:4px solid #16a34a; }
-        ul.plain.recommend li{ border-left:4px solid #2563eb; }
-
-        button{
-            width:100%;
-            margin-top:10px;
-            padding:15px;
-            border:none;
-            border-radius:10px;
-            background:#2563eb;
-            color:#fff;
-            font-size:17px;
-            cursor:pointer;
-        }
-
-        button:hover{
-            background:#1d4ed8;
-        }
-    </style>
-
+    <link rel="stylesheet" href="result.css">
 </head>
 <body>
 
-<div class="container">
+    <div class="container">
 
-    <h1>Blueprint Cop Report</h1>
+        <!-- Header -->
+        <header class="header">
+            <h1>🏗️ Blueprint Cop</h1>
+            <p>AI Powered Building Blueprint Inspection Report</p>
+        </header>
 
-    <div id="content"></div>
+        <!-- Report will be rendered here -->
+        <main id="content">
 
-    <button onclick="window.location.href='index.html'">
-        Analyze Another Plan
-    </button>
+        </main>
 
-</div>
+        <!-- Footer Buttons -->
+        <div class="bottom-actions">
 
-<script>
+            <button onclick="window.location.href='index.html'">
+                🔄 Analyze Another Blueprint
+            </button>
 
-function pillClass(text){
-    return String(text).toLowerCase().replace(/\s+/g, "-");
-}
-
-function renderReport(result){
-
-    const bd = result.building_details || {};
-    const ir = result.inspection_result || {};
-    const sm = result.summary || {};
-    const checks = result.inspection_checks || {};
-    const violations = result.violations || [];
-    const positives = result.positive_observations || [];
-    const recs = result.recommendations || [];
-
-    let html = "";
-
-    // Overview
-    html += `
-    <div class="card">
-        <h2>Overview</h2>
-        <div class="stat-grid">
-            <div class="stat">
-                <div class="label">Status</div>
-                <div class="value"><span class="pill ${pillClass(ir.status)}">${ir.status ?? "-"}</span></div>
-            </div>
-            <div class="stat">
-                <div class="label">Approval</div>
-                <div class="value"><span class="pill ${pillClass(ir.approval_status)}">${ir.approval_status ?? "-"}</span></div>
-            </div>
-            <div class="stat">
-                <div class="label">Compliance Score</div>
-                <div class="value">${ir.compliance_score ?? "-"}</div>
-            </div>
-            <div class="stat">
-                <div class="label">Risk Level</div>
-                <div class="value"><span class="pill ${pillClass(ir.risk_level)}">${ir.risk_level ?? "-"}</span></div>
-            </div>
         </div>
-    </div>`;
 
-    // Building details
-    html += `
-    <div class="card">
-        <h2>Building Details</h2>
-        <div class="stat-grid">
-            <div class="stat"><div class="label">Type</div><div class="value">${bd.building_type ?? "-"}</div></div>
-            <div class="stat"><div class="label">Floors</div><div class="value">${bd.floors ?? "-"}</div></div>
-            <div class="stat"><div class="label">Drawing Quality</div><div class="value">${bd.drawing_quality ?? "-"}</div></div>
-        </div>
-    </div>`;
+        <footer>
+            <p>
+                Generated by <strong>Blueprint Cop AI</strong><br>
+                Powered by Google Gemini Vision
+            </p>
+        </footer>
 
-    // Summary
-    html += `
-    <div class="card">
-        <h2>Summary</h2>
-        <div class="stat-grid">
-            <div class="stat"><div class="label">Total Rooms</div><div class="value">${sm.total_rooms ?? "-"}</div></div>
-            <div class="stat"><div class="label">Rooms Checked</div><div class="value">${sm.rooms_checked ?? "-"}</div></div>
-            <div class="stat"><div class="label">Total Violations</div><div class="value">${sm.total_violations ?? "-"}</div></div>
-            <div class="stat"><div class="label">High</div><div class="value">${sm.high ?? "-"}</div></div>
-            <div class="stat"><div class="label">Medium</div><div class="value">${sm.medium ?? "-"}</div></div>
-            <div class="stat"><div class="label">Low</div><div class="value">${sm.low ?? "-"}</div></div>
-        </div>
-    </div>`;
+    </div>
 
-    // Violations
-    if (violations.length) {
-        html += `<div class="card"><h2>Violations</h2>`;
-        violations.forEach(v => {
-            html += `
-            <div class="violation severity-${pillClass(v.severity)}">
-                <div class="room">${v.room ?? ""} — ${v.issue ?? ""}</div>
-                <div class="row"><b>Severity:</b> ${v.severity ?? "-"} &nbsp; | &nbsp; <b>Confidence:</b> ${v.confidence ?? "-"}</div>
-                <div class="row"><b>Current:</b> ${v.current_value ?? "-"} &nbsp; | &nbsp; <b>Required:</b> ${v.required_value ?? "-"}</div>
-                <div class="row"><b>Suggestion:</b> ${v.suggestion ?? "-"}</div>
-            </div>`;
-        });
-        html += `</div>`;
-    }
-
-    // Checks
-    if (checks.passed_checks || checks.failed_checks || checks.unable_to_verify) {
-        html += `
-        <div class="card">
-            <h2>Inspection Checks</h2>
-            <div class="stat-grid">
-                <div>
-                    <b>Passed</b>
-                    <ul class="plain positive">${(checks.passed_checks||[]).map(c=>`<li>${c}</li>`).join("") || "<li>None</li>"}</ul>
-                </div>
-                <div>
-                    <b>Failed</b>
-                    <ul class="plain">${(checks.failed_checks||[]).map(c=>`<li>${c}</li>`).join("") || "<li>None</li>"}</ul>
-                </div>
-                <div>
-                    <b>Unable to Verify</b>
-                    <ul class="plain">${(checks.unable_to_verify||[]).map(c=>`<li>${c}</li>`).join("") || "<li>None</li>"}</ul>
-                </div>
-            </div>
-        </div>`;
-    }
-
-    // Positive observations
-    if (positives.length) {
-        html += `
-        <div class="card">
-            <h2>Positive Observations</h2>
-            <ul class="plain positive">${positives.map(p=>`<li>${p}</li>`).join("")}</ul>
-        </div>`;
-    }
-
-    // Recommendations
-    if (recs.length) {
-        html += `
-        <div class="card">
-            <h2>Recommendations</h2>
-            <ul class="plain recommend">${recs.map(r=>`<li>${r}</li>`).join("")}</ul>
-        </div>`;
-    }
-
-    // Overall recommendation
-    if (result.overall_recommendation) {
-        html += `
-        <div class="card">
-            <h2>Overall Recommendation</h2>
-            <p>${result.overall_recommendation}</p>
-        </div>`;
-    }
-
-    document.getElementById("content").innerHTML = html;
-}
-
-const raw = localStorage.getItem("analysisResult");
-
-if (raw) {
-    try {
-        renderReport(JSON.parse(raw));
-    } catch (e) {
-        document.getElementById("content").innerHTML =
-            `<div class="card"><h2>Error</h2><p>Could not parse the analysis result.</p></div>`;
-        console.error(e);
-    }
-} else {
-    document.getElementById("content").innerHTML = `
-        <div class="card">
-            <h2>No Analysis Found</h2>
-            <p>Please upload a file first.</p>
-        </div>`;
-}
-
-</script>
+<script src="result_script.js"></script>
 
 </body>
 </html>
