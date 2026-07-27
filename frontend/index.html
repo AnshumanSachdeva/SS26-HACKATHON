@@ -1,350 +1,378 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blueprint Cop | AI Building Plan Reviewer</title>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blueprint Cop</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
 
-    <link rel="stylesheet" href="style.css">
-</head>
-
-<body>
-
+  <body>
     <!-- ================= NAVBAR ================= -->
 
     <nav class="navbar">
+      <div class="logo">Blueprint<span>Cop</span></div>
 
-        <div class="logo">
-            Blueprint<span>Cop</span>
-        </div>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
 
-        <ul>
+        <li><a href="#features">Features</a></li>
 
-            <li><a href="#home">Home</a></li>
+        <li><a href="#how">How It Works</a></li>
 
-            <li><a href="#features">Features</a></li>
+        <li><a href="#dashboard">Dashboard</a></li>
 
-            <li><a href="#how">How it Works</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
 
-           
-            <li><a href="#faq">FAQ</a></li>
-
-            <li><a href="#contact">Contact</a></li>
-
-        </ul>
-
-        <button>🧚‍♂️</button>
-
+      <button class="nav-btn">Get Started</button>
     </nav>
 
+    <!-- ================= HERO ================= -->
 
+    <section class="hero" id="home">
+      <!-- Left -->
 
-   <!-- ================= HERO ================= -->
-
-<section class="hero" id="home">
-
-    <!-- Left Content -->
-    <div class="left">
-
-        <p class="tag">
-            AI Municipal Assistant
-        </p>
+      <div class="hero-left">
+        <span class="tag"> 🚀 AI Powered Municipal Assistant </span>
 
         <h1>
-            Review Building Plans Faster.
-            <br>
-            Build With Confidence.
+          Building Plan Reviews
+
+          <span>In Minutes.</span>
         </h1>
 
         <p class="hero-text">
-            Upload a floor plan. Find flow, privacy, ventilation,
-            and kitchen layout issues before construction starts.
+          Blueprint Cop uses AI Vision to inspect floor plans, detect building
+          code violations, evaluate layouts, and generate municipal compliance
+          reports before construction begins.
         </p>
 
-        <div class="buttons">
+        <div class="hero-buttons">
+          <button class="primary-btn" id="uploadBtn">Upload Blueprint</button>
 
-           <div class="buttons">
-
-    <button class="primary-btn" id="uploadBtn">
-        Upload Blueprint
-    </button>
-
-    <button class="secondary-btn">
-        Watch Demo
-    </button>
-
-</div>
-
-<!-- Hidden File Input -->
-<input
-    type="file"
-    id="fileInput"
-    accept=".pdf,.dwg,.dxf,.png,.jpg,.jpeg"
-    hidden>
+          <button class="secondary-btn">▶ Watch Demo</button>
         </div>
 
-    </div>
+        <input
+          type="file"
+          id="fileInput"
+          accept=".pdf,.dwg,.dxf,.png,.jpg,.jpeg"
+          hidden
+        />
 
-    <!-- Right Content -->
-    <div class="right">
+        <!-- Stats -->
 
-        <div class="video-card">
+        <div class="hero-stats">
+          <div class="stat-card">
+            <h2>95%</h2>
 
-            <video
-                class="hero-video"
-                autoplay
-                muted
-                loop
-                playsinline
-                preload="auto">
+            <p>AI Accuracy</p>
+          </div>
 
-                <!-- Change the filename if yours is different -->
-                <source src="SaaS_website_displays_AI_floor_202607260032.mp4" type="video/mp4">
+          <div class="stat-card">
+            <h2>5s</h2>
 
-                Your browser does not support the video tag.
+            <p>Average Analysis</p>
+          </div>
 
-            </video>
+          <div class="stat-card">
+            <h2>24/7</h2>
 
+            <p>Availability</p>
+          </div>
         </div>
+      </div>
 
-    </div>
+      <!-- Right -->
 
-</section>
-   
+      <div class="hero-right">
+        <div class="preview-card">
+          <div class="preview-header">
+            <div>
+              <h3>Blueprint Analysis</h3>
 
+              <p>AI Inspection Summary</p>
+            </div>
 
+            <span class="status approved"> Approved </span>
+          </div>
 
+          <video class="hero-video" autoplay muted loop playsinline>
+            <source
+              src="SaaS_website_displays_AI_floor_202607260032.mp4"
+              type="video/mp4"
+            />
+          </video>
 
+          <div class="score-box">
+            <div>
+              <h2>92%</h2>
+
+              <span> Compliance Score </span>
+            </div>
+
+            <div class="score-details">
+              <p>✔ Fire Safety Passed</p>
+
+              <p>✔ Parking Verified</p>
+
+              <p>✔ Stair Width Passed</p>
+
+              <p>⚠ Kitchen Ventilation</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- ================= FEATURES ================= -->
 
     <section id="features">
+      <div class="section-title">
+        <span> FEATURES </span>
 
-        <h2>Everything Needed For AI Building Approval</h2>
+        <h2>Everything Required For AI Building Approval</h2>
 
-        <div class="feature-grid">
+        <p>
+          Designed for municipalities, architects, engineers, and builders to
+          speed up plan approvals.
+        </p>
+      </div>
 
-            <div class="card">
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="icon">🤖</div>
 
-                <h3>AI Blueprint Review</h3>
+          <h3>AI Blueprint Review</h3>
 
-                <p>
-                    Upload CAD/PDF building plans
-                </p>
-
-            </div>
-
-            <div class="card">
-
-                <h3>Building Code Check</h3>
-
-                <p>
-                   AI-powered room & layout detection
-                </p>
-
-            </div>
-
-            <div class="card">
-
-                <h3>Checking</h3>
-
-                <p>
-                    Automatic compliance checking against municipal rules.
-                </p>
-
-            </div>
-
-            <div class="card">
-
-                <h3>Detection</h3>
-
-                <p>
-                    Detects violations such as setbacks, FAR, parking, fire exits, 
-                    staircases, accessibility, and building height
-                </p>
-
-            </div>
-
-            <div class="card">
-
-                <h3>Verification</h3>
-
-                <p>
-                    Compliance Score & Approval Readiness Report
-                </p>
-
-            </div>
-
-            <div class="card">
-
-                <h3>Compliance Report</h3>
-
-                <p>
-                    Annotated blueprint with rule-wise analysis
-                </p>
-
-            </div>
-
+          <p>
+            Upload CAD, PDF or image-based plans and let AI inspect every room
+            automatically.
+          </p>
         </div>
 
+        <div class="feature-card">
+          <div class="icon">📐</div>
+
+          <h3>Building Code Validation</h3>
+
+          <p>
+            Compare layouts with municipal rules and identify compliance issues
+            instantly.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon">🏢</div>
+
+          <h3>Smart Layout Detection</h3>
+
+          <p>
+            Detect bedrooms, kitchens, bathrooms, staircases and circulation
+            automatically.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon">⚠</div>
+
+          <h3>Violation Detection</h3>
+
+          <p>
+            Detect missing ventilation, fire exits, setbacks, parking and
+            accessibility issues.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon">✅</div>
+
+          <h3>Approval Readiness</h3>
+
+          <p>
+            Get compliance score, approval status, confidence level and
+            recommendations.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon">📄</div>
+
+          <h3>Compliance Report</h3>
+
+          <p>Generate an inspection-ready report for municipal review.</p>
+        </div>
+      </div>
     </section>
-
-
-
-
 
     <!-- ================= HOW IT WORKS ================= -->
 
     <section id="how">
+      <div class="section-title">
+        <span> HOW IT WORKS </span>
 
-        <div class="how-left">
+        <h2>Three Simple Steps</h2>
 
-            <h4>HOW IT WORKS</h4>
+        <p>
+          Upload your blueprint, let AI inspect it, and receive a professional
+          compliance report within seconds.
+        </p>
+      </div>
 
-            <h2>
+      <div class="timeline">
+        <div class="timeline-card">
+          <div class="timeline-number">01</div>
 
-                A Smarter Way
+          <h3>Upload Blueprint</h3>
 
-                <br>
-
-                To Approve Plans.
-
-            </h2>
-
-            <p>
-
-                Blueprint Cop automates repetitive municipal reviews so
-                engineers can focus on approvals instead of paperwork.
-
-            </p>
-
+          <p>
+            Upload your PDF, DWG, DXF or image-based building plan securely.
+          </p>
         </div>
 
-        <div class="how-right">
+        <div class="timeline-card">
+          <div class="timeline-number">02</div>
 
-            <div class="step">
+          <h3>AI Inspects Layout</h3>
 
-                <span>01</span>
-
-                <div>
-
-                    <h3>Upload Blueprint</h3>
-
-                    <p>
-
-                        Upload PDF, DWG or DXF plans.
-
-                    </p>
-
-                </div>
-
-            </div>
-
-            <div class="step">
-
-                <span>02</span>
-
-                <div>
-
-                    <h3>AI Reviews Building</h3>
-
-                    <p>
-
-                        OCR + Vision AI + Rule Engine checks every drawing.
-
-                    </p>
-
-                </div>
-
-            </div>
-
-            <div class="step">
-
-                <span>03</span>
-
-                <div>
-
-                    <h3>Generate Report</h3>
-
-                    <p>
-
-                        Download compliance report ready for submission.
-
-                    </p>
-
-                </div>
-
-            </div>
-
+          <p>
+            Gemini Vision analyzes rooms, circulation, ventilation, staircases
+            and municipal rules.
+          </p>
         </div>
 
+        <div class="timeline-card">
+          <div class="timeline-number">03</div>
+
+          <h3>Download Report</h3>
+
+          <p>
+            Receive a detailed compliance report with approval status and
+            recommendations.
+          </p>
+        </div>
+      </div>
     </section>
-
-
-
 
     <!-- ================= DASHBOARD ================= -->
 
-    <section class="dashboard">
+    <section class="dashboard" id="dashboard">
+      <div class="section-title">
+        <span> AI DASHBOARD </span>
 
-        <h2>AI Compliance Dashboard</h2>
+        <h2>Compliance Report Preview</h2>
 
-      
+        <p>
+          A modern dashboard built to help municipal officers review building
+          plans faster.
+        </p>
+      </div>
 
-    <div class="dashboard-box">
-    <img src="use1.png" alt="AI Dashboard" class="dashboard-image">
-</div>
-
-</div>
- 
+      <div class="dashboard-box">
+        <img src="use1.png" alt="Dashboard Preview" class="dashboard-image" />
+      </div>
     </section>
 
-   
+    <!-- ================= CTA ================= -->
 
+    <section class="cta-section">
+      <div class="cta-card">
+        <h2>Ready To Review Your Blueprint?</h2>
 
+        <p>
+          Upload your building plan and let AI perform a complete compliance
+          inspection in seconds.
+        </p>
 
+        <button class="primary-btn" id="uploadBtn2">Upload Blueprint</button>
+      </div>
+    </section>
+
+    <!-- ================= FAQ ================= -->
+
+    <section id="faq">
+      <div class="section-title">
+        <span> FAQ </span>
+
+        <h2>Frequently Asked Questions</h2>
+      </div>
+
+      <div class="faq-container">
+        <div class="faq-card">
+          <h3>Which file formats are supported?</h3>
+
+          <p>PDF, PNG, JPG, JPEG, DWG and DXF.</p>
+        </div>
+
+        <div class="faq-card">
+          <h3>How long does analysis take?</h3>
+
+          <p>Usually less than 5 seconds depending on blueprint complexity.</p>
+        </div>
+
+        <div class="faq-card">
+          <h3>Can it detect municipal rule violations?</h3>
+
+          <p>
+            Yes. Blueprint Cop identifies common compliance issues and suggests
+            improvements.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CONTACT ================= -->
+
+    <section class="contact" id="contact">
+      <div class="contact-card">
+        <h2>Blueprint Cop</h2>
+
+        <p>AI-powered Building Plan Compliance Assistant</p>
+
+        <div class="contact-info">
+          <div>📧 blueprintcop@gmail.com</div>
+
+          <div>🌐 AI Powered Municipal Solution</div>
+        </div>
+      </div>
+    </section>
 
     <!-- ================= FOOTER ================= -->
 
     <footer>
-
+      <div class="footer-top">
         <div>
+          <h2>Blueprint<span>Cop</span></h2>
 
-            <h3>Blueprint Cop</h3>
-
-            <p>
-
-                AI-powered building plan approval for municipalities.
-
-            </p>
-
+          <p>Making municipal approvals smarter with AI.</p>
         </div>
 
         <div>
+          <h4>Product</h4>
 
-            Product
+          <a href="#features"> Features </a>
 
-            <br>
+          <a href="#how"> How It Works </a>
 
-            FAQ
-
-            <br>
-
-            Contact
-
+          <a href="#dashboard"> Dashboard </a>
         </div>
 
         <div>
+          <h4>Company</h4>
 
-            © 2026 Blueprint Cop
+          <a href="#faq"> FAQ </a>
 
+          <a href="#contact"> Contact </a>
         </div>
+      </div>
 
+      <div class="footer-bottom">
+        © 2026 Blueprint Cop • Built for Smart Municipal Approvals
+      </div>
     </footer>
-<script src="script.js"></script>
-</body>
-</html>
-</body>
 
+    <script src="script.js"></script>
+  </body>
 </html>

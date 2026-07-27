@@ -1,24 +1,76 @@
 const uploadBtn = document.getElementById("uploadBtn");
+const uploadBtn2 = document.getElementById("uploadBtn2");
 const fileInput = document.getElementById("fileInput");
 
+let currentButton = uploadBtn;
+
+// ===============================
+// Upload Button Events
+// ===============================
+
 uploadBtn.addEventListener("click", () => {
+    currentButton = uploadBtn;
     fileInput.click();
 });
 
+uploadBtn2.addEventListener("click", () => {
+    currentButton = uploadBtn2;
+    fileInput.click();
+});
+
+// ===============================
+// File Selected
+// ===============================
+
 fileInput.addEventListener("change", async () => {
 
-    if (fileInput.files.length === 0) return;
+    if (!fileInput.files.length) return;
 
-    const file = fileInput.files[0];
+    await uploadBlueprint(fileInput.files[0], currentButton);
 
-    // Disable button
-    uploadBtn.disabled = true;
+});
 
-    // Show loading
-    uploadBtn.innerHTML = `
+// ===============================
+// Helpers
+// ===============================
+
+function startAnimation(button, text) {
+
+    let dots = 0;
+
+    button.innerHTML = `
         <span class="spinner"></span>
-        Uploading...
+        <span class="loading-text">${text}</span>
     `;
+
+    const loadingText = button.querySelector(".loading-text");
+
+    const interval = setInterval(() => {
+
+        dots = (dots + 1) % 4;
+
+        loadingText.textContent =
+            text + ".".repeat(dots);
+
+    }, 300);
+
+    return interval;
+}
+
+function stopAnimation(interval) {
+    clearInterval(interval);
+}
+
+// ===============================
+// Upload Blueprint
+// ===============================
+
+async function uploadBlueprint(file, button) {
+
+    button.disabled = true;
+
+    const uploadAnimation =
+        startAnimation(button, "Uploading");
 
     try {
 
@@ -30,23 +82,51 @@ fileInput.addEventListener("change", async () => {
             body: formData
         });
 
+        stopAnimation(uploadAnimation);
+
         if (!response.ok) {
             throw new Error("Upload Failed");
         }
 
-        const data = await response.json();
+        // Upload Complete
 
-        console.log(data);
-
-        // Save response for result page
-        localStorage.setItem("analysisResult", JSON.stringify(data));
-
-        uploadBtn.innerHTML = `
-            <span class="spinner"></span>
-            Analyzing...
+        button.innerHTML = `
+            ✅ Upload Complete
         `;
 
-        // Go to result page
+        await sleep(500);
+
+        // Analyzing
+
+        const analyzingAnimation =
+            startAnimation(button, "Analyzing Blueprint");
+
+        const data = await response.json();
+
+        stopAnimation(analyzingAnimation);
+
+        // Saving Report
+
+        button.innerHTML = `
+            <span class="spinner"></span>
+            Saving Report...
+        `;
+
+        localStorage.setItem(
+            "analysisResult",
+            JSON.stringify(data)
+        );
+
+        await sleep(500);
+
+        // Redirect
+
+        button.innerHTML = `
+            🚀 Redirecting...
+        `;
+
+        await sleep(500);
+
         window.location.href = "result.html";
 
     }
@@ -56,10 +136,16 @@ fileInput.addEventListener("change", async () => {
 
         alert("Failed to connect to backend.");
 
-        uploadBtn.disabled = false;
+        button.disabled = false;
 
-        uploadBtn.innerHTML = "Upload Building Plan";
+        button.innerHTML = "Upload Blueprint";
 
     }
 
-});
+}
+
+// ===============================
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
